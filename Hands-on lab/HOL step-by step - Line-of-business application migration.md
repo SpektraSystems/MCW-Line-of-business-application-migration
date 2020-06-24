@@ -143,7 +143,7 @@ In this task, you will create the Azure Migrate project and select the assessmen
 
     >**Note**: If you are running this lab in a shared subscription you will need to use a migrate project name that is unique in the subscription. Append characters to the end of migrate project name to make your project name unique. For example: **SmartHotelMigration-SUFFIX**.
 
-    ![Screenshot of the Azure Migrate 'Add a tool' wizard, at the 'Migrate project' step.](images/Exercise1/add-tool-1.png)
+    ![Screenshot of the Azure Migrate 'Add a tool' wizard, at the 'Migrate project' step.](images/Exercise1/migrate.png)
 
 4. At the **Select assessment tool** section, select **Azure Migrate: Server Assessment**, then select **Next**.
 
