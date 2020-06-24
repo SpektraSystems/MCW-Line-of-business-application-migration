@@ -1267,7 +1267,7 @@ Azure Bastion requires a dedicated subnet within the same virtual network as the
   
     - Public IP address: (Create new) **Bastion-IP**
 
-    ![Screenshot showing the 'Create a Bastion' blade.](images/Exercise3/bastion-create.png)
+    ![Screenshot showing the 'Create a Bastion' blade.](images/Exercise3/bastion.png)
 
 5. Select **Review + create**, then **Create**.
 
