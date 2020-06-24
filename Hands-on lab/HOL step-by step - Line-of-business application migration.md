@@ -506,9 +506,15 @@ In this exercise you will migrate the application database from the on-premises 
 
 Prior to using the Azure Database Migration Service, the resource provider **Microsoft.DataMigration** must be registered in the target subscription.
 
-1. Open the Azure Cloud Shell by navigating to **https://shell.azure.com**. Log in using your Azure subscription credentials if prompted to do so, select a **PowerShell** session, and accept any prompts.
+1. Open the Azure Cloud Shell by navigating to **https://shell.azure.com**. Log in using your Azure subscription credentials if prompted to do so, select a **PowerShell** session.
 
-2. Run the following command to register the **Microsoft.DataMigration** resource provider:
+2. Click on **Advance Settings** and Select existing Resource Group as **AzureMigrateRG** and enter **ShellstorageSUFFIX** for storage account name and Enter **FilestorageSUFFIX** for File Shre 
+
+        Note: - You can get the SUFFIX details from you envrionment details page.
+        
+   ![Azure portal screenshot showing the select path to create a SQL Database.](images/Exercise2/storage.png)
+
+3. Run the following command to register the **Microsoft.DataMigration** resource provider:
    
     ```PowerShell
     Register-AzResourceProvider -ProviderNamespace Microsoft.DataMigration
