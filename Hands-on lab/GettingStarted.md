@@ -30,7 +30,7 @@
    
 5. Now, you will see two tabs in edge browser, close first tab named with **Microsoft Edge**.
 
-   ![](images/click-sign-in-to-microsoft-azure-tab.png "Close Tab")
+   ![](images/close-tab.png "Close Tab")
    
 6. On **Sign in to Micsoft Azure** tab you will see login screen, in that enter following email/username and then click on **Next**. 
    * Email/Username: <inject key="AzureAdUserEmail"></inject>
@@ -40,7 +40,7 @@
 7. Now enter the following password and click on **Sign in**.
    * Password: <inject key="AzureAdUserPassword"></inject>
    
-     ![](images/azure-login-enter-password.png "Enter Password")
+     ![](images/azure-login-enter-password1.png "Enter Password")
      
 8. If you see the pop-up **Stay Signed in?**, click No
 
