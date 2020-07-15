@@ -4,11 +4,11 @@
     "Language": "English",
     "Files": [
        {
-        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/MCW-Line-of-business-application-migration/june-update/Hands-on%20lab/GettingStarted.md",
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/MCW-Line-of-business-application-migration/june-update/Hands-on%20lab/lab-overview.md",
         "Order": 1
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/MCW-Line-of-business-application-migration/june-update/Hands-on%20lab/lab-overview.md",
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/MCW-Line-of-business-application-migration/june-update/Hands-on%20lab/GettingStarted.md",
         "Order": 2
       },
       {
