@@ -54,6 +54,6 @@
    
 13. Confirm you have all resource group are present as shown below.
 
-   ![](images/resource-groups-02.png "Resource groups")
+    ![](images/rgview-lob.png "Resource groups")
    
 14. Now, click on the **Next** from lower right corner to move on **Getting Started** page.
