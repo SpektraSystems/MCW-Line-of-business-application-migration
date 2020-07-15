@@ -22,7 +22,7 @@
    
 3. On next window, click on **Confirm**.
 
-   ![](./images/edge-confirm.png "Confirm")
+   ![](./images/click-sign-in-to-microsoft-azure-tab.png "Confirm")
    
 4. Now, you can close the popup which is coming up.
 
