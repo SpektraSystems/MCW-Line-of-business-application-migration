@@ -130,17 +130,20 @@ In this task, you will create the Azure Migrate project and select the assessmen
 
 > **Note**: In this lab, you will use the Microsoft-provided assessment and migration tools within Azure Migrate. A number of third-party tools are also integrated with Azure Migrate for both assessment and migration. You may wish to spend some time exploring these third-party options outside of this lab.
 
-1. Open your browser, navigate to **https://portal.azure.com**, and log in with your Azure subscription credentials.
+1. Open a Edge browser from your desktop, navigate to **https://portal.azure.com**, and log in with below Azure subscription credentials.
+
+    * Azure Usename/Email: <inject key="AzureAdUserEmail"></inject>
+    * Azure Password: <inject key="AzureAdUserPassword"></inject>
 
 2. Select **All services** in the portal's left navigation, then search for and select **Azure Migrate** to open the Azure Migrate Overview blade, shown below.
 
     ![Screenshot of the Azure Migrate overview blade.](images/Exercise1/azure-migrate-overview.png)
 
-3. Select **Assess and migrate servers**, then **Add tool(s)**, to open the **Add a tool** wizard at the **Migrate project** section.  Select your subscription and create a new resource group named **AzureMigrateRG**. Enter **SmartHotelMigration** as the Migrate project name, and choose a geography close to you to store the migration assessment data. Select **Next**.
+3. Select **Assess and migrate servers**, then **Add tool(s)**, to open the **Add a tool** wizard at the **Migrate project** section.  Select your subscription and select existing resource group named **AzureMigrateRG**. Enter **SmartHotelMigration** as the Migrate project name, and choose a geography close to you to store the migration assessment data. Select **Next**.
 
-    >**Note**: If you are running this lab in a shared subscription you will need to use a migrate project name that is unique in the subscription. Append characters to the end of migrate project name to make your project name unique. For example: **SmartHotelMigration1234**.
+    >**Note**: If you are running this lab in a shared subscription you will need to use a migrate project name that is unique in the subscription. Append characters to the end of migrate project name to make your project name unique. For example: **SmartHotelMigration-SUFFIX**.
 
-    ![Screenshot of the Azure Migrate 'Add a tool' wizard, at the 'Migrate project' step.](images/Exercise1/add-tool-1.png)
+    ![Screenshot of the Azure Migrate 'Add a tool' wizard, at the 'Migrate project' step.](images/Exercise1/migrate2.png)
 
 4. At the **Select assessment tool** section, select **Azure Migrate: Server Assessment**, then select **Next**.
 
@@ -172,35 +175,29 @@ In this task, you will deploy and configure the Azure Migrate appliance in the o
 
     Read through the instructions on how to download, deploy and configure the Azure Migrate appliance. Close the 'Discover machines' blade (do **not** download the .VHD file, it has already been downloaded for you).
 
-2. In a separate browser tab, navigate to the Azure portal. In the global search box, enter **SmartHotelHost**, then select the **SmartHotelHost** virtual machine.
+2. In Server Manager, select **Tools**, then **Hyper-V Manager** (if Server Manager is not open, open it by selecting **Start**, then **Server Manager**). In Hyper-V manager, select **SMARTHOTELSUFFIX**. You should now see a list of the four VMs that comprise the on-premises SmartHotel application.
 
-    ![Screenshot of the Azure portal search box, searching for the SmartHotelHost virtual machine.](images/Exercise1/find-smarthotelhost.png)
-
-3. Select **Connect**, select **RDP**, then download the RDP file and connect to the virtual machine using username **demouser** and password **demo!pass123**.
-
-4. In Server Manager, select **Tools**, then **Hyper-V Manager** (if Server Manager does not open automatically, open it by selecting **Start**, then **Server Manager**). In Hyper-V manager, select **SMARTHOTELHOST**. You should now see a list of the four VMs that comprise the on-premises SmartHotel application.
-
-    ![Screenshot of Hyper-V Manager on the SmartHotelHost, showing 4 VMs: smarthotelSQL1, smarthotelweb1, smarthotelweb2 and UbuntuWAF.](images/Exercise1/hyperv-vm-list.png)
+    ![Screenshot of Hyper-V Manager on the SmartHotelHost, showing 4 VMs: smarthotelSQL1, smarthotelweb1, smarthotelweb2 and UbuntuWAF.](images/11.png)
 
     You will now deploy the Azure Migrate appliance virtual machine.  Normally, you would first need to download the .ZIP file containing the appliance to your Hyper-V host, and unzip it. To save time, these steps have been completed for you.
 
-5. In Hyper-V Manager, under **Actions**, select **Import Virtual Machine...** to open the **Import Virtual Machine** wizard.
+3. In Hyper-V Manager, under **Actions**, select **Import Virtual Machine...** to open the **Import Virtual Machine** wizard.
 
-    ![Screenshot of Hyper-V Manager, with the 'Import Virtual Machine' action highlighted.](images/Exercise1/import-vm-1.png)
+    ![Screenshot of Hyper-V Manager, with the 'Import Virtual Machine' action highlighted.](images/22.png)
 
-6. At the first step, **Before You Begin**, select **Next**.
+4. At the first step, **Before You Begin**, select **Next**.
 
-7. At the **Locate Folder** step, select **Browse** and navigate to **F:\\VirtualMachines\\AzureMigrateAppliance** (the folder name may also include a version number), then choose **Select Folder**, then select **Next**.
+5. At the **Locate Folder** step, select **Browse** and navigate to **F:\\VirtualMachines\\AzureMigrateAppliance** (the folder name may also include a version number), then choose **Select Folder**, then select **Next**.
 
     ![Screenshot of the Hyper-V 'Import Virtual Machine' wizard with the F:\VirtualMachines\AzureMigrateAppliance folder selected.](images/Exercise1/import-vm-2.png)
 
-8. At the **Select Virtual Machine** step, the **AzureMigrateAppliance** VM should already be selected. Select **Next**.
+6. At the **Select Virtual Machine** step, the **AzureMigrateAppliance** VM should already be selected. Select **Next**.
 
-9. At the **Choose Import Type** step, keep the default setting **Register the virtual machine in-place**. Select **Next**.
+7. At the **Choose Import Type** step, keep the default setting **Register the virtual machine in-place**. Select **Next**.
 
-10. At the **Connect Network** step, you will see an error that the virtual switch previously used by the Azure Migrate appliance could not be found. From the **Connection** drop down, select the **Azure Migrate Switch**, then select **Next**.
+8. At the **Connect Network** step, you will see an error that the virtual switch previously used by the Azure Migrate appliance could not be found. From the **Connection** drop down, select the **Azure Migrate Switch**, then select **Next**.
 
-    ![Screenshot of the Hyper-V 'Import Virtual Machine' wizard at the 'Connect Network' step. The 'Azure Migrate Switch' has been selected.](images/Exercise1/import-vm-4.png)
+    ![Screenshot of the Hyper-V 'Import Virtual Machine' wizard at the 'Connect Network' step. The 'Azure Migrate Switch' has been selected.](images/23.png)
 
     > **Note**:  The Azure Migrate appliance needs access to the Internet to upload data to Azure. It also needs access to the Hyper-V host. However, it does not need direct access to the application VMs running on the Hyper-V host. To protect the application environment, the Azure Migrate Appliance should be deployed to a separate subnet within Hyper-V, rather than in the same subnet as your application. 
     >
@@ -208,11 +205,11 @@ In this task, you will deploy and configure the Azure Migrate appliance in the o
     >
     > The Azure Migrate Appliance will be connected to a separate subnet 192.168.1.0/24, which has been set up for you. Using the 'Azure Migrate Switch' connects the appliance to this subnet. The appliance is assigned an IP address from this subnet using a DHCP service running on the SmartHotelHost.
 
-11. Review the summary page, then select **Finish** to create the Azure Migrate appliance VM.
+9. Review the summary page, then select **Finish** to create the Azure Migrate appliance VM.
 
-12. In Hyper-V Manager, select the **AzureMigrateAppliance** VM, then select **Start** on the left.
+10. In Hyper-V Manager, select the **AzureMigrateAppliance** VM, then select **Start** on the left.
 
-   ![Screenshot of Hyper-V Manager showing the start button for the Azure Migrate appliance.](images/Exercise1/start-migrate-appliance.png)
+   ![Screenshot of Hyper-V Manager showing the start button for the Azure Migrate appliance.](images/24.png)
 
 #### Task summary 
 
@@ -224,11 +221,11 @@ In this task, you will configure the Azure Migrate appliance and use it to compl
 
 1. In Hyper-V Manager, select the **AzureMigrateAppliance** VM, then select **Connect** on the left.
 
-    ![Screenshot of Hyper-V Manager showing the connect button for the Azure Migrate appliance.](images/Exercise1/connect-appliance.png)
+    ![Screenshot of Hyper-V Manager showing the connect button for the Azure Migrate appliance.](images/25.png)
 
 2. A new window will open showing the Azure Migrate appliance. Wait for the License terms screen to show, then select **Accept**.
 
-    ![Screenshot of the Azure Migrate appliance showing the license terms.](images/Exercise1/license-terms.png)
+    ![Screenshot of the Azure Migrate appliance showing the license terms.](images/26.png)
 
 3. On the **Customize settings** screen, set the Administrator password to **demo!pass123** (twice). Then select **Finish**.
 
@@ -256,7 +253,9 @@ In this task, you will configure the Azure Migrate appliance and use it to compl
 
    ![Screenshot of the Azure Migrate appliance configuration wizard, with the 'Set up prerequisites' phase completed and the 'Continue' button highlighted.](images/Exercise1/appliance-config-3b.png)
 
-9. At the next phase of the wizard, **Register with Azure Migrate**, select **Login**. This opens a separate browser tab where you enter your Azure subscription credentials.  
+9. At the next phase of the wizard, **Register with Azure Migrate**, select **Login**. This opens a separate browser tab where you enter below Azure subscription credentials.     
+    * Azure Usename/Email: <inject key="AzureAdUserEmail"></inject>
+    * Azure Password: <inject key="AzureAdUserPassword"></inject>
 
 10. Once you have logged in, return to the Azure Migrate Appliance tab and select your subscription and the **SmartHotelRegistration(AzureMigrateRG)** Migrate project using the drop-downs. Enter **SmartHotelAppl** as the appliance name, then select **Register**. After a short pause, the registration should be successful. Select **Continue**.
 
@@ -274,15 +273,15 @@ In this task, you will configure the Azure Migrate appliance and use it to compl
 
     ![Screenshot of the Azure Migrate appliance configuration wizard, showing the button to add Hyper-V hosts.](images/Exercise1/appliance-config-6.png)
 
-13. A window will appear prompting for a list of Hyper-V hosts. Enter the Hyper-V hostname, **SmartHotelHost**. Then select **Validate**.
+13. A window will appear prompting for a list of Hyper-V hosts. Enter the Hyper-V hostname, **SmartHostSUFFIX**. Then select **Validate**.
 
     > **Note**: The Hyper-V host must be specified using a hostname, and that hostname must resolve to the IP address of the host. The Hyper-V host cannot be specified using an IP address directly.
 
-    ![Screenshot of the Azure Migrate appliance configuration wizard, showing the button to add Hyper-V hosts.](images/Exercise1/appliance-config-7.png)
+    ![Screenshot of the Azure Migrate appliance configuration wizard, showing the button to add Hyper-V hosts.](images/smart2.png)
 
 14. Below, a table shows the SmartHotelHost, with status 'green'. Select **Validate** again, and check that the status stays green. Then select **Save and start discovery**.
 
-    ![Screenshot of the Azure Migrate appliance configuration wizard, showing the Hyper-V host has been added, with the 'Save and start discovery' button enabled.](images/Exercise1/appliance-config-8.png)
+    ![Screenshot of the Azure Migrate appliance configuration wizard, showing the Hyper-V host has been added, with the 'Save and start discovery' button enabled.](images/smart1.png)
 
 15. A message **Initiating discovery and configuring appliance** will appear.
 
@@ -318,11 +317,11 @@ In this task, you will use Azure Migrate to create a migration assessment for th
 
     ![Screenshot of the Azure Migrate 'Assess servers' blade, with the 'view all' assessment properties link highlighted.](images/Exercise1/assess-servers-2.png)
 
-4. The **Assessment properties** blade allows you to tailor many of the settings used when making a migration assessment report. Take a few moments to explore the wide range of assessment properties. Hover over the information icons to see more details on each setting. Choose any settings you like, then select **Save**. (You have to make a change for the Save button to be enabled; if you don't want to make any changes, just close the blade.)
+4. The **Assessment properties** blade allows you to tailor many of the settings used when making a migration assessment report. Take a few moments to explore the wide range of assessment properties. Hover over the information icons to see more details on each setting. Choose any settings you like, then select **Save**. (You have to make a change for the Save button to be enabled; if you don't want to make any changes, just close the blade.), Click on Next button.
 
-    ![Screenshot of the Azure Migrate 'Assessment properties' blade, showing a wide range of migration assessment settings.](images/Exercise1/assessment-properties.png)
+    ![Screenshot of the Azure Migrate 'Assessment properties' blade, showing a wide range of migration assessment settings.](images/pro1.png)
 
-5. On the Assess servers blade, under **Select or create a group**, choose **Create New** and enter the group name **SmartHotel VMs**. Select the **smarthotelweb1**, **smarthotelweb2** and **UbuntuWAF** VMs. Select **Create assessment**.
+5. On the Assess servers blade, under **Select or create a group**, choose **Create New** and enter the group name **SmartHotel VMs**. Select the **smarthotelweb1**, **smarthotelweb2** and **UbuntuWAF** VMs. Clickon on **Create assessment**.
 
     ![Screenshot of the Azure Migrate 'Assess servers' page. A new server group containing servers smarthotelweb1, smarthotelweb2, and UbuntuWAF.](images/Exercise1/assessment-vms.png)
 
@@ -372,9 +371,9 @@ In this task, you will configure the Azure Migrate dependency visualization feat
 
     ![Screenshot of the Azure Migrate 'Dependencies' blade, with the 'Configure OMS Workspace' button highlighted.](images/Exercise1/configure-oms-link.png)
 
-3. Create a new OMS workspace. Use **AzureMigrateWS\<unique number\>** as the workspace name, where \<unique number\> is a random number. Choose a workspace location close to your lab deployment, then select **Configure**.
+3. Create a new OMS workspace. Use **AzureMigrateWSSUFFFIX** as the workspace name, Choose a workspace location close to your lab deployment, then select **Configure**.
 
-    ![Screenshot of the Azure Migrate 'Configure OMS workspace' blade.](images/Exercise1/configure-oms.png)
+    ![Screenshot of the Azure Migrate 'Configure OMS workspace' blade.](images/31.png)
 
 4. Wait for the workspace to be deployed. Once it is deployed, navigate to it and select **Advanced settings** under **Settings** on the left. Make a note of the **Workspace ID** and **Primary Key** (for example by using Notepad).
 
@@ -384,7 +383,7 @@ In this task, you will configure the Azure Migrate dependency visualization feat
    
     ![Screenshot of part of the Azure Migrate 'Advanced Settings' blade, showing the agent download links.](images/Exercise1/agent-links.png)
 
-6. Return to the RDP session with the **SmartHotelHost**. In **Hyper-V Manager**, select **smarthotelweb1** and select **Connect**.
+6. Return to the RDP session with the **SmartHostSUFFIX**. In **Hyper-V Manager**, select **smarthotelweb1** and select **Connect**.
 
     ![Screenshot from Hyper-V manager highlighting the 'Connect' button for the smarthotelweb1 VM.](images/Exercise1/connect-web1.png)
 
@@ -412,7 +411,7 @@ In this task, you will configure the Azure Migrate dependency visualization feat
 
     You will now deploy the Linux versions of the Microsoft Monitoring Agent and Dependency Agent on the UbuntuWAF VM. To do so, you will first connect to the UbuntuWAF remotely using an SSH session to the IP address of the SmartHotelHost. The SmartHotelHost has been pre-configured with a NAT rule which forwards SSH connections to the UbuntuWAF VM.
 
-12. Return to the RDP session with the **SmartHotelHost** and open a command prompt using the desktop shortcut.  
+12. Return to the RDP session with the **SmartHostSUFFIX** and open a command prompt using the desktop shortcut.  
 
     > **Note**: The SmartHotelHost runs Windows Server 2019 with the Windows Subsystem for Linux enabled. This allows the command prompt to be used as an SSH client.
 
@@ -503,6 +502,11 @@ Prior to using the Azure Database Migration Service, the resource provider **Mic
 
 1. Open the Azure Cloud Shell by navigating to **https://shell.azure.com**. Log in using your Azure subscription credentials if prompted to do so, select a **PowerShell** session, and accept any prompts.
 
+2. If you got a prompte for creating storage account, Click on **Advance Settings** and Select existing Resource Group as **AzureMigrateRG** and enter **ShellstorageSUFFIX** for storage account name and Enter **FilestorageSUFFIX** for File Shre 
+
+        Note: - You can get the SUFFIX details from you envrionment details page.
+        
+   ![Azure portal screenshot showing the select path to create a SQL Database.](images/Exercise2/storage.png)
 2. Run the following command to register the **Microsoft.DataMigration** resource provider:
    
     ```PowerShell
@@ -534,13 +538,13 @@ In this task you will create a new Azure SQL database to migrate the on-premises
 
     - Subscription: **Select your subscription**.
   
-    - Resource group: (create new) **SmartHotelDBRG**
+    - Resource group: (Select existing) **SmartHotelDBRG**
   
     - Database name: **smarthoteldb**
   
     - Server: Select **Create new** and fill in the New server blade as follows then select **OK**:
   
-        - Server name: **smarthoteldb\[unique number\]**
+        - Server name: **smarthoteldbSUFFIX**
   
         - Server admin login: **demouser**
   
@@ -556,9 +560,9 @@ In this task you will create a new Azure SQL database to migrate the on-premises
 
     > **Note**: To select the **Standard S0** database tier, select **Configure database**, then **Looking for basic, standard, premium?**, select **Standard** and select **Apply**.
 
-    ![Screenshot from the Azure portal showing the Create SQL Database blade.](images/Exercise2/new-db.png)
+    ![Screenshot from the Azure portal showing the Create SQL Database blade.](images/32.png)
 
-    ![Screenshot from the Azure portal showing the New server blade (when creating a SQL database).](images/Exercise2/new-db-server.png)
+    ![Screenshot from the Azure portal showing the New server blade (when creating a SQL database).](images/33.png)
 
 4. Select **Next: Networking >** to move to the **Networking** tab. Confirm that **No access** is selected.
 
@@ -648,11 +652,11 @@ In this task you will install and use Microsoft SQL Server Data Migration Assist
 
 8. Return to your remote desktop session with the **SmartHotelHost** VM. Open **Chrome** from the desktop and paste the Data Migration Assistant download URL into the address bar. Download and install the Data Migration Assistant.
 
-9.  From within **SmartHotelHost**, open **Windows Explorer** and navigate to the **C:\\Program Files\\Microsoft Data Migration Assistant** folder. Open the **Dma.exe.config** file using Notepad. Search for **AzureMigrate** and remove the **\<\!--** and **--\>** around the line setting the **EnableAssessmentUploadToAzureMigrate** key. **Save** the file and close Notepad when done.
+9.  From within **SmartHostSUFFIX** RDP Session, open **Windows Explorer** and navigate to the **C:\\Program Files\\Microsoft Data Migration Assistant** folder. Open the **Dma.exe.config** file using Notepad. Search for **AzureMigrate** and remove the **\<\!--** and **--\>** around the line setting the **EnableAssessmentUploadToAzureMigrate** key. **Save** the file and close Notepad when done.
 
   ![Screenshot showing the Dma.exe.config setting enabling upload to Azure Migrate.](images/Exercise2/dma-enable-upload.png)
 
-10. From within **SmartHotelHost** launch **Microsoft Data Migration Assistant** using the desktop icon. 
+10. From within **SmartHostSUFFIX** launch **Microsoft Data Migration Assistant** using the desktop icon. 
 
 11. In the Data Migration Assistant, select the **+ New** icon.  Fill in the project details as follows:
 
@@ -978,7 +982,7 @@ You will also configure a private endpoint in this network for the SQL Database.
 
     - Subscription: **Select your Azure subscription**.
   
-    - Resource group: (create new) **SmartHotelRG**
+    - Resource group: **SmartHotelRG**
   
     - Name: **SmartHotelVNet**
   
@@ -1070,7 +1074,7 @@ In this task, you will register your Hyper-V host with the Azure Migrate: Server
 
     ![Screenshot of the Discover machines' panel from Azure Migrate, highlighting the download link for the Hyper-V replication provider software installer.](images/Exercise3/discover-3.png)
 
-4. Open the **SmartHotelHost** remote desktop window, launch **Chrome** from the desktop shortcut, and paste the link into a new browser tab to download the Azure Site Recovery provider installer.
+4. Open the **SmartHostSUFFIX** remote desktop window, launch **Chrome** from the desktop shortcut, and paste the link into a new browser tab to download the Azure Site Recovery provider installer.
 
 5. Return to the **Discover machines** page in your browser (outside the SmartHotelHost remote desktop session). Select the blue **Download** button and download the registration key file.
 
@@ -1078,7 +1082,7 @@ In this task, you will register your Hyper-V host with the Azure Migrate: Server
 
 6. Open the file location in Windows Explorer, and copy the file to your clipboard. Return to the **SmartHotelHost** remote desktop session and paste the file to the desktop.
 
-7. Still within the **SmartHotelHost** remote desktop session, open the **AzureSiteRecoveryProvider.exe** installer you downloaded a moment ago. On the **Microsoft Update** tab, select **Off** and select **Next**. Accept the default installation location and select **Install**.
+7. Still within the **SmartHostSUFFIX** remote desktop session, open the **AzureSiteRecoveryProvider.exe** installer you downloaded a moment ago. On the **Microsoft Update** tab, select **Off** and select **Next**. Accept the default installation location and select **Install**.
 
     ![Screenshot of the ASR provider installer.](images/Exercise3/asr-provider-install.png)
 
@@ -1092,7 +1096,7 @@ In this task, you will register your Hyper-V host with the Azure Migrate: Server
 
     ![Screenshot of the ASR provider showing successful registration.](images/Exercise3/asr-registered.png)
 
-11. Minimize the SmartHotelHost remote desktop session and return to the Azure Migrate browser window. **Refresh** your browser, then re-open the **Discover machines** panel by selecting **Discover** under **Azure Migrate: Server Migration** and selecting **Yes, with Hyper-V** for **Are your machines virtualized?**.
+11. Return to the Azure Migrate browser window. **Refresh** your browser, then re-open the **Discover machines** panel by selecting **Discover** under **Azure Migrate: Server Migration** and selecting **Yes, with Hyper-V** for **Are your machines virtualized?**.
 
 12. Select **Finalize registration**, which should now be enabled.
 
@@ -1250,7 +1254,7 @@ Azure Bastion requires a dedicated subnet within the same virtual network as the
 
     - Subscription: **Your subscription**
   
-    - Resource group: (Create new) **BastionRG**
+    - Resource group: **BastionRG**
   
     - Name: **SmartHotelBastion**
   
@@ -1262,7 +1266,7 @@ Azure Bastion requires a dedicated subnet within the same virtual network as the
   
     - Public IP address: (Create new) **Bastion-IP**
 
-    ![Screenshot showing the 'Create a Bastion' blade.](images/Exercise3/bastion-create.png)
+    ![Screenshot showing the 'Create a Bastion' blade.](images/Exercise3/bastion.png)
 
 5. Select **Review + create**, then **Create**.
 
@@ -1396,34 +1400,12 @@ To demonstrate that the VM Agent is installed, we will now execute the 'Run comm
 
     ![Screenshot showing the Run command feature.](images/Exercise3/run-command.png)
 
-9. As a final step, you will now clean up the resources that were created to support the migration and are no longer needed. These include the Azure Migrate project, the Recovery Service Vault (Azure Site Recovery resource) used by  Azure Migrate: Server Migration, and the Database Migration Service instance. Also included are various secondary resources such as the Log Analytics workspace used by the Dependency Visualization, the storage account used by Azure Migrate: Server Migration, and a Key Vault instance.
 
-    Because all of these temporary resources have been deployed to a separate **AzureMigrateRG** resource group, deleting them is as simple as deleting the resource group. Simply navigate to the resource group blade in the Azure portal, select **Delete resource group** and complete the confirmation prompts.
 
 #### Task summary <!-- omit in toc -->
 
-In this task you installed the Azure Virtual Machine Agent (VM Agent) on your migrated VMs. You also cleaned up the temporary resources created during the migration process.
+In this task you installed the Azure Virtual Machine Agent (VM Agent) on your migrated VMs.
 
 ### Exercise summary <!-- omit in toc -->
 
-In this exercise you migrated the web tier and application tiers of the application from on-premises to Azure using Azure Migrate: Server Migration. Having migrated the virtual machines, you reconfigured the application tier to use the migrated application database hosted in Azure SQL Database, and verified that the migrated application is working end-to-end. You also installed the VM Agent on the migrated virtual machines, and cleaned up migration resources.
-
-## After the hands-on lab
-
-Duration: 10 minutes
-
-### Task 1: Clean up resources
-
-You should complete all of these steps *after* attending the Hands-on lab. Failure to delete the resources created during the lab will result in continued billing.
-
-1. Delete the **SmartHotelHostRG** resource group containing the SmartHotelHost.
-
-2. Delete the **SmartHotelDBRG** resource group containing the Azure SQL Database.
-
-3. Delete the **BastionRG** resource group by first deleting the Bastion resource then deleting the resource group itself. 
-
-4. Delete the **SmartHotelRG** resource group containing the migrated VMs and related infrastructure resources.
-
-5. Delete the **AzureMigrateRG** resource group containing the Azure Migrate resources (if not done already at the end of Exercise 3).
-
-You should follow all steps provided *after* attending the Hands-on-lab.
+In this exercise you migrated the web tier and application tiers of the application from on-premises to Azure using Azure Migrate: Server Migration. Having migrated the virtual machines, you reconfigured the application tier to use the migrated application database hosted in Azure SQL Database, and verified that the migrated application is working end-to-end. You also installed the VM Agent on the migrated virtual machines.
