@@ -1,15 +1,11 @@
 # Getting Started with Lab
 
 1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the the lab.
-2. To get the lab environment details, you can select **Lab Environment** tab. Additionally, the credentials will also be emailed to your email address provided at registration.
+2. To get the lab environment details, you can select **Lab Environment** tab. Additionally, the credentials will also be emailed to your email address provided at registration. You can also open the Lab Guide on Seprate full window by selcting the **Split Window** from lower right corner.
 
-   ![](images/lob01.png "Lab Environment")
+   ![](images/lobv2.png "Lab Environment")
  
     > You will see Deployment ID value on **Lab Environment** tab, use it whereever you see SUFFIX or DeploymentID in lab steps.
- 
-3. You can also open the Lab Guide on Seprate full window by selcting the **Arrow** icon in upper right corner.
-
-   ![](images/lob02.png "Lab Guide")
  
 ## Login to Azure Portal
 1. In the JumpVM, click on Azure portal shortcut of Microsoft Edge browser which is created on desktop.
